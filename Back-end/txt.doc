@@ -18,6 +18,7 @@ https://www.it-swarm-es.com/es/python/como-instalar-pip-para-python-3-en-mac-os-
 use crudpythonreactdb = pour acceder a la base de donnée
 show collections = pour le montrer 
 db.users.find().pretty() = pour regarder dans users
+
 -  python src/app.py = pour lancer le serveur 
 
 

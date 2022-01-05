@@ -1,5 +1,5 @@
 from bson.objectid import ObjectId
-from flask import Flask, request
+from flask import Flask, request;
 from flask import json
 from flask.json import jsonify
 from flask_pymongo import PyMongo
@@ -26,7 +26,7 @@ def createUser():
     id = db.insert_one({
         'name': request.json['name'],
         'email': request.json['email'],
-        'password': request.json['password']
+        'telephone': request.json['telephone']
     })
     return jsonify(str(id))
 
@@ -39,7 +39,7 @@ def getUsers():
             '_id': str(ObjectId(doc['_id'])),
             'name': doc['name'],
             'email': doc['email'],
-            'password': doc['password']
+            'telephone': doc['telephone']
         })
     return jsonify(users)
 #jsonify c'est l'objet json
@@ -52,7 +52,7 @@ def getUser(id):
         '_id': str(ObjectId(user['_id'])),
         'name': user['name'],
         'email': user['email'],
-        'password': user['password'] 
+        'telephone': user['telephone'] 
     })
 
 @app.route('/user/<id>', methods=['PUT']) #modifier un utilisateur
@@ -62,7 +62,7 @@ def updateUser(id):
     db.update_one({'_id': ObjectId(id)}, {'$set': {
         'name': request.json['name'],
         'email': request.json ['email'],
-        'password': request.json['password'] 
+        'telephone': request.json['telephone'] 
     }})
     return jsonify({'msg': 'Utilisateur editer'})
 

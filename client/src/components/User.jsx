@@ -5,7 +5,7 @@ const API = process.env.REACT_APP_API;
 export const Users = () => { 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [telephone, setTelephone] = useState("");
 
     const [users, setUsers] = useState([]); 
     const [update, setUpdate] = useState(false);
@@ -14,7 +14,7 @@ export const Users = () => {
     //----------------------------------Ajouter un utilisateur-----------------------------------------
     const handleSubmit= async (e) => {
         e.preventDefault();
-        //console.log(name, email, password)
+        //console.log(name, email, telephone)
        if (!update){
         const res = await fetch(`${API}/users`, {
             method: 'POST',
@@ -24,7 +24,7 @@ export const Users = () => {
             body: JSON.stringify({
                 name,
                 email,
-                password,
+                telephone,
             }),
         });
         await res.json();
@@ -37,7 +37,7 @@ export const Users = () => {
                body: JSON.stringify({
                    name,
                    email,
-                   password
+                   telephone
                }),
            });  
         const data = await res.json();
@@ -50,7 +50,7 @@ export const Users = () => {
 
         setName('');
         setEmail('');
-        setPassword(''); 
+        setTelephone(''); 
     }
 
  //----------------------------------Recuperer un utilisateur-----------------------------------------
@@ -84,7 +84,7 @@ export const Users = () => {
         //Reset
         setName(data.name)
         setEmail(data.email)
-        setPassword(data.password)
+        setTelephone(data.telephone)
        
     }
     useEffect(() => {
@@ -117,9 +117,9 @@ export const Users = () => {
           </div>
           <div className="form-group">
             <input
-              type="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              type="telephone"
+              onChange={(e) => setTelephone(e.target.value)}
+              value={telephone}
               className="form-control"
               placeholder="Mot de passe"
             />
@@ -135,7 +135,7 @@ export const Users = () => {
                       <tr>
                           <th>Prenom</th>
                           <th>Email</th>
-                          <th>Mot de passe</th>
+                          <th>Téléphone</th>
                           <th>Operations</th>
                       </tr>
                   </thead>
@@ -144,7 +144,7 @@ export const Users = () => {
                     <tr  key={user._id}>
                         <td>{user.name}</td>
                         <td>{user.email}</td>
-                        <td>{user.password}</td>
+                        <td>{user.telephone}</td>
                         <td>
                             <button 
                             type="button"
